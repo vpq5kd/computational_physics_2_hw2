@@ -12,10 +12,10 @@ def magnetization(state):
     return np.sum(state)
 
 def transition_probability(delta_energy,n,T):
-    return (1/n)*np.min([1, np.exp(-delta_energy/T)])
+    return np.min([1, np.exp(-delta_energy/T)])
 
 def metropolis(n):
-    temp_array = np.linspace(0.1, 5.1, 1000)[::-1]
+    temp_array = np.linspace(0.1, 5.1, 100)[::-1]
     energy_array = []
     energy_array_squared = []
     magnetization_array = [] 
@@ -25,7 +25,7 @@ def metropolis(n):
     state = ising_start_state
     for T in temp_array:
         temp_energy_array = []
-        for i in range(0, 10000):
+        for i in range(0, 1000):
             index_to_flip = rng.integers(n)
             new_state = state.copy()
             new_state[index_to_flip] = -new_state[index_to_flip]
@@ -53,8 +53,7 @@ def main():
   
     energy_array_np = np.array(energy_array)
     energy_array_squared_np = np.array(energy_array_squared)
-    specific_heat_array = (energy_array_squared_np - energy_array_np**2)/N*temp_array
-    plt.figure()
+    specific_heat_array = N*(energy_array_squared_np - energy_array_np**2)/(temp_array**2)
     fig, ax = plt.subplots(1,3)
     ax[0].plot(temp_array, energy_array, 'o')
     ax[1].plot(temp_array, specific_heat_array, 'o')
