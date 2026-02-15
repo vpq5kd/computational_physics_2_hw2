@@ -71,14 +71,14 @@ def main():
     marker_size = 3
     ax[0].plot(temp_array, energy_array, 'o',markersize = marker_size, markerfacecolor='none',markeredgecolor='purple')
     ax[0].set_xlabel("T")
-    ax[0].set_ylabel("E")
+    ax[0].set_ylabel("E",rotation=0,labelpad=15)
     ax[1].plot(temp_array, specific_heat_array, 'o', markersize = marker_size, markerfacecolor='none',markeredgecolor='purple')
     ax[1].set_xlabel("T")
-    ax[1].set_ylabel("C")
+    ax[1].set_ylabel("C",rotation=0,labelpad=15)
     ax[2].plot(temp_array, magnetic_susceptibility_array, 'o', markersize = marker_size, markerfacecolor='none',markeredgecolor='purple')
     ax[2].set_yscale("log")
     ax[2].set_xlabel("T")
-    ax[2].set_ylabel(r"$\Chi$")
+    ax[2].set_ylabel(r"$\chi$",rotation=0,labelpad=15)
     
     plt.tight_layout()
     plt.show()
