@@ -30,9 +30,12 @@ def metropolis(n):
             new_state = state.copy()
             new_state[index_to_flip] = -new_state[index_to_flip]
 
-            starting_state_energy = energy(state, n) 
-            new_state_energy = energy(new_state, n)
-            delta_energy = new_state_energy - starting_state_energy
+            #starting_state_energy = energy(state, n) 
+            #new_state_energy = energy(new_state, n)
+            
+            i_left = (index_to_flip - 1) % n
+            i_right = (index_to_flip + 1) % n
+            delta_energy = 2 * state[index_to_flip] * (state[i_left] + state[i_right])
             probability = transition_probability(delta_energy, n, T) 
             
             accept = rng.random() < probability
