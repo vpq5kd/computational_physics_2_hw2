@@ -67,7 +67,7 @@ def main():
     magnetization_array_squared_np = np.array(magnetization_array_squared)
     magnetic_susceptibility_array = (magnetization_array_squared_np - magnetization_array_np**2)/(N*temp_array)
     
-    fig, ax = plt.subplots(1,3)
+    fig, ax = plt.subplots(1,4)
     marker_size = 3
     ax[0].plot(temp_array, energy_array, 'o',markersize = marker_size, markerfacecolor='none',markeredgecolor='purple')
     ax[0].set_xlabel("T")
@@ -79,8 +79,11 @@ def main():
     ax[2].set_yscale("log")
     ax[2].set_xlabel("T")
     ax[2].set_ylabel(r"$\chi$",rotation=0,labelpad=15)
-    
+    ax[3].plot(temp_array, magnetization_array_np/N, 'o', markersize=marker_size, markerfacecolor='none',markeredgecolor='purple')
+    ax[3].set_xlabel("T")
+    ax[3].set_ylabel("M",rotation=0,labelpad=15)
     plt.tight_layout()
+    plt.savefig("ising_without_analytical.png")
     plt.show()
 
 main()
