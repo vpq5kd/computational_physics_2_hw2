@@ -12,7 +12,7 @@ def magnetization(state):
     return np.sum(state)
 
 def transition_probability(delta_energy,n,T):
-    return np.min([1, np.exp(-delta_energy/T)/np.exp(delta_energy/T)])
+    return np.min([1, np.exp(-delta_energy/T)])
 
 def metropolis(n):
     temp_array = np.linspace(0.1, 5.1, 100)[::-1]
