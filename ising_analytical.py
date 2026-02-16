@@ -26,7 +26,7 @@ def metropolis(n):
     for T in temp_array:
         temp_energy_array = []
         temp_magnetization_array = []
-        for i in range(0, 10000):
+        for i in range(0, 20000):
             index_to_flip = rng.integers(n)
             new_state = state.copy()
             new_state[index_to_flip] = -new_state[index_to_flip]
@@ -134,15 +134,16 @@ def main():
     ax[0].set_xlabel("T")
     ax[0].set_ylabel("E",rotation=0,labelpad=15)
     ax[0].plot(temp_array_np, energy_analytical(temp_array_np,1,0,N),color='orange',label='Exact')
-    ax[1].plot(temp_array, specific_heat_array, 'o', markersize = marker_size, markerfacecolor='none',markeredgecolor='purple',label='MCMC')
+    ax[1].plot(temp_array, specific_heat_array, 'o', markersize = marker_size, markerfacecolor='none',markeredgecolor='purple')
     ax[1].set_xlabel("T")
     ax[1].set_ylabel("C",rotation=0,labelpad=15)
-    ax[1].plot(temp_array_np, specific_heat_analytical(temp_array_np,1,0,N),color='orange',label='Exact')
-    ax[2].plot(temp_array, magnetic_susceptibility_array, 'o', markersize = marker_size, markerfacecolor='none',markeredgecolor='purple',label='MCMC')
+    ax[1].plot(temp_array_np, specific_heat_analytical(temp_array_np,1,0,N),color='orange')
+    ax[2].plot(temp_array, magnetic_susceptibility_array, 'o', markersize = marker_size, markerfacecolor='none',markeredgecolor='purple')
     ax[2].set_yscale("log")
     ax[2].set_xlabel("T")
     ax[2].set_ylabel(r"$\chi$",rotation=0,labelpad=15)
-    ax[2].plot(temp_array_np, magnetization_susceptibility_analytical(temp_array_np,1,0,N),color='orange',label='Excat')
+    ax[2].plot(temp_array_np, magnetization_susceptibility_analytical(temp_array_np,1,0,N),color='orange')
+    fig.legend(loc='upper right')
     plt.tight_layout()
     plt.savefig("ising_with_analytical.png")
     plt.show()
