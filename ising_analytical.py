@@ -26,7 +26,7 @@ def metropolis(n):
     for T in temp_array:
         temp_energy_array = []
         temp_magnetization_array = []
-        for i in range(0, 1000000):
+        for i in range(0, 10000000):
             index_to_flip = rng.integers(n)
             new_state = state.copy()
             new_state[index_to_flip] = -new_state[index_to_flip]
